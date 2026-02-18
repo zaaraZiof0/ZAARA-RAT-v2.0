@@ -1,335 +1,411 @@
-<div align="center">
-
-# 🛡️ ZAARA RAT v2.0
+# ZAARA RAT v2.0
 
 ### Advanced Android Remote Administration Tool
 
-**⚠️ For Educational & Research Purposes Only ⚠️**
-
-<p>
-  <img src="images/logo.PNG" alt="ZAARA RAT Logo" width="200"/>
-</p>
+**For Educational & Research Purposes Only**
 
 **Author:** ZAARA | **Version:** 2.0.0 | **License:** MIT (Educational Use)
 
-[![Node.js](https://img.shields.io/badge/Node.js-v14+-green.svg)](https://nodejs.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/zaara/zaara-rat)
+---
 
-</div>
+## About ZAARA RAT
+
+ZAARA RAT is an advanced Android Remote Administration Tool designed for cybersecurity education and research. This tool demonstrates the capabilities and risks of remote access tools, helping students and researchers understand mobile security threats.
+
+### Architecture
+
+- **Server Side:** Node.js, Express.js, Socket.IO
+- **Client Side:** Android APK (Kotlin-based)
+- **Communication:** Telegram Bot API for command & control
+- **Real-time:** WebSocket-based bidirectional communication
 
 ---
 
-## 📱 Control Panel
+## Features
 
-<p align="center">
-  <img src="images/4.jpg" alt="Control Panel" width="700"/>
-</p>
+### Core Functionality
+- Real-time device monitoring and control
+- Telegram bot interface for command execution
+- Session management with unique device IDs
+- Rate limiting and security controls
+- Comprehensive logging system
 
----
+### Device Information
+- Device model, manufacturer, and Android version
+- Battery status and level monitoring
+- Network information (IP, carrier, connection type)
+- Installed applications list
+- Contact list access
 
-## 🎯 About
+### Remote Actions
+- **Camera Control:** Capture photos from front/rear cameras
+- **Microphone:** Record audio with custom duration
+- **Location Tracking:** Get GPS coordinates
+- **SMS Operations:** Read messages, send SMS to contacts
+- **Notifications:** Read notifications, send custom notifications
+- **Toast Messages:** Display messages on target device
+- **Vibration Control:** Trigger device vibration
+- **File Management:** Upload/download files
+- **Clipboard Access:** Retrieve clipboard content
+- **Custom Webview:** Open URLs on target device
 
-**ZAARA RAT v2.0** is a powerful Android Remote Administration Tool designed for cybersecurity education and penetration testing. Built with modern technologies and security-first approach.
-
-### 🏗️ Architecture
-
-- **Server:** Node.js, Express.js, Socket.IO
-- **Control:** Telegram Bot API
-- **Client:** Android APK (Kotlin)
-- **Communication:** Real-time WebSocket
-
----
-
-## ✨ Features
-
-### 📱 Device Control
-- 🛰️ **GPS Location** - Real-time location tracking
-- 📷 **Camera Access** - Front and rear camera capture
-- 🎙️ **Microphone** - Audio recording with custom duration
-- 📋 **Clipboard** - Access clipboard content
-- 📳 **Vibration** - Remote vibration control
-
-### 💬 Communication
-- ✉️ **SMS Manager** - Read, send, and manage messages
-- ✉️ **SMS Broadcast** - Send to all contacts
-- 👤 **Contacts** - Access full contact list
-- 🔔 **Notifications** - Read and send notifications
-
-### 📊 System Information
-- 💻 **Installed Apps** - List all applications
-- 📡 **SIM Info** - Carrier and network details
-- 🔋 **Battery Status** - Real-time battery info
-- 📱 **Device Info** - Model, manufacturer, Android version
-
-### 🎨 Interaction
-- 🗨️ **Toast Messages** - Display messages on device
-- 🌐 **WebView** - Load custom web pages
-- 🔗 **URL Opener** - Open any URL
-- 🔐 **Keylogger** - Keystroke monitoring
-
-### 🔒 Advanced Features
-- 🆔 **Session Management** - UUID-based device tracking
-- 🚦 **Rate Limiting** - Command throttling (10/min)
-- 📊 **Activity Logging** - Comprehensive audit logs
-- 📁 **File Upload** - Secure file transfer (50MB limit)
-- 🔄 **Auto-Reconnect** - Resilient connections
-- 🖥️ **Multi-Device** - Manage multiple targets
+### Security Features
+- Session-based authentication
+- Rate limiting protection
+- Request validation
+- Secure file uploads
+- Activity logging
+- Auto-cleanup mechanisms
 
 ---
 
-## 🚀 Quick Start
+## Installation
 
 ### Prerequisites
-- Node.js v14+
-- Telegram Bot Token
-- Android device for testing
+- Node.js v14 or higher
+- npm v6 or higher
+- Telegram Bot Token (from @BotFather)
+- Your Telegram Chat ID
 
-### Installation
+### Setup Steps
 
+1. **Clone the repository**
 ```bash
-# 1. Clone repository
-git clone https://github.com/zaara/zaara-rat.git
-cd zaara-rat
-
-# 2. Install dependencies
-npm install
-
-# 3. Configure
-cp data.json.example data.json
-nano data.json  # Add your bot token and chat ID
-
-# 4. Create required directories
-mkdir logs uploads
-
-# 5. Start server
-npm start
+git clone https://github.com/zaaraZiof0/ZAARA-RAT-v2.0.git
+cd ZAARA-RAT-v2.0
 ```
 
-### Configuration
+2. **Install dependencies**
+```bash
+npm install
+```
 
-Edit `data.json`:
+3. **Configure settings**
+```bash
+cp data.json.example data.json
+```
+
+Edit `data.json` with your credentials:
 ```json
 {
     "token": "YOUR_TELEGRAM_BOT_TOKEN",
     "id": "YOUR_TELEGRAM_CHAT_ID",
-    "host": "http://localhost:3000/",
-    "author": "ZAARA",
-    "version": "2.0.0"
+    "host": "http://localhost:3000/"
 }
 ```
 
-**Get Telegram Bot Token:**
-1. Open Telegram, search `@BotFather`
-2. Send `/newbot` and follow instructions
-3. Copy your bot token
-
-**Get Chat ID:**
-1. Send message to your bot
-2. Visit: `https://api.telegram.org/bot<TOKEN>/getUpdates`
-3. Find your chat ID in the response
-
-### Install Android APK
-
-Transfer `CLIENT.apk` to your Android device and install. The app will connect automatically to your server.
-
----
-
-## 📡 API Documentation
-
-### Socket.IO Events
-
-**Client → Server:**
-- `device-info` - Device connection info
-- `location-result` - GPS coordinates
-- `contacts-result` - Contact list
-- `messages-result` - SMS messages
-- `apps-result` - Installed apps
-- `clipboard-result` - Clipboard content
-
-**Server → Client:**
-- `get-location` - Request location
-- `get-contacts` - Request contacts
-- `send-sms` - Send SMS
-- `capture-camera` - Take photo
-- `record-audio` - Record audio
-- `vibrate` - Vibrate device
-
-### REST Endpoints
-
-```
-GET  /health       - Server health check
-POST /upload       - File upload endpoint
-GET  /stats        - Statistics dashboard
-```
-
----
-
-## 🔐 Security Features
-
-- ✅ **UUID Session Management** - Unique device identification
-- ✅ **Rate Limiting** - Prevents command flooding
-- ✅ **Input Validation** - Sanitized inputs
-- ✅ **Security Headers** - XSS and clickjacking protection
-- ✅ **Comprehensive Logging** - Full audit trail
-- ✅ **File Size Limits** - 50MB upload restriction
-- ✅ **Error Handling** - No information disclosure
-
----
-
-## 🖥️ Deployment
-
-### Local
+4. **Start the server**
 ```bash
 npm start
 ```
 
-### Render.com (Free)
-1. Create account on [Render.com](https://render.com)
-2. New Web Service → Connect repository
-3. Build: `npm install`
-4. Start: `npm start`
-5. Add environment variables
+The server will run on `http://localhost:3000`
 
-### Heroku
+---
+
+## Configuration
+
+### data.json
+- `token`: Your Telegram Bot token from @BotFather
+- `id`: Your Telegram Chat ID (get from @userinfobot)
+- `host`: Your server URL (use trailing slash)
+
+### Environment Variables (Optional)
+Create a `.env` file for additional configuration:
+```
+PORT=3000
+NODE_ENV=production
+MAX_UPLOAD_SIZE=52428800
+```
+
+---
+
+## Usage
+
+### Starting the Server
+```bash
+npm start
+```
+
+### Development Mode
+```bash
+npm run dev
+```
+
+### Bot Commands
+
+Once a device connects, use these Telegram bot commands:
+
+- **Device Info:** Get complete device information
+- **Camera:** Capture front or rear camera
+- **Location:** Get current GPS coordinates
+- **Messages:** View all SMS messages
+- **Contacts:** Retrieve contact list
+- **Apps:** List installed applications
+- **Record Audio:** Capture microphone with custom duration
+- **Send SMS:** Send SMS to any number or all contacts
+- **Clipboard:** Get current clipboard content
+- **Notifications:** View recent notifications
+- **Custom Actions:** Vibrate, toast messages, custom webview
+
+---
+
+## API Endpoints
+
+### Device Connection
+- `POST /` - Client connection endpoint
+- WebSocket connection for real-time communication
+
+### File Operations
+- `POST /upload` - File upload from device
+- `POST /download` - File download to server
+
+### Data Endpoints
+- Device sends data via Socket.IO events
+- Server processes and forwards to Telegram
+
+---
+
+## Project Structure
+
+```
+ZAARA-RAT-v2.0/
+├── server.js              # Main server application
+├── package.json           # Dependencies and scripts
+├── data.json             # Configuration (gitignored)
+├── data.json.example     # Configuration template
+├── .env.example          # Environment template
+├── .gitignore            # Git ignore rules
+├── LICENSE               # MIT License
+└── client apps/
+    └── CLIENT.apk        # Android client application
+```
+
+---
+
+## Security Considerations
+
+### Important Notes
+- This tool is for EDUCATIONAL purposes only
+- Always obtain proper authorization before use
+- Never use on devices without explicit permission
+- Understand local laws regarding remote monitoring
+- Use only in controlled environments
+
+### Built-in Security
+- Rate limiting prevents abuse
+- Session management tracks connections
+- Logging records all activities
+- Input validation prevents injection
+- Secure file handling
+- Git ignores sensitive configuration
+
+### Recommendations
+- Use strong, unique bot tokens
+- Restrict bot access to authorized users only
+- Run server in secure, private networks
+- Monitor logs regularly
+- Keep dependencies updated
+- Use HTTPS in production
+
+---
+
+## Deployment
+
+### Local Development
+```bash
+npm start
+```
+
+### Production Deployment
+
+**Option 1: Render.com**
+1. Create account on Render.com
+2. Create new Web Service
+3. Connect GitHub repository
+4. Add environment variables
+5. Deploy
+
+**Option 2: Heroku**
 ```bash
 heroku create zaara-rat
 heroku config:set TELEGRAM_BOT_TOKEN=your_token
 git push heroku main
 ```
 
-### VPS (Ubuntu)
+**Option 3: VPS (Ubuntu)**
 ```bash
 # Install Node.js
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
+sudo apt-get install -y nodejs
 
-# Install PM2
-sudo npm install -g pm2
+# Clone and setup
+git clone https://github.com/zaaraZiof0/ZAARA-RAT-v2.0.git
+cd ZAARA-RAT-v2.0
+npm install
 
-# Start application
+# Use PM2 for process management
+npm install -g pm2
 pm2 start server.js --name zaara-rat
-pm2 save
 pm2 startup
+pm2 save
 ```
 
 ---
 
-## 📊 Project Stats
+## Troubleshooting
 
-- **Code:** 734 lines (clean, documented)
-- **Features:** 15+ implemented
-- **Security:** 8+ features
-- **Dependencies:** 6 packages
-- **API Events:** 20+ Socket.IO events
+### Common Issues
 
----
+**Bot not responding**
+- Check bot token in data.json
+- Verify chat ID is correct
+- Ensure bot is started with /start command
 
-## ⚖️ Legal Disclaimer
+**Device not connecting**
+- Verify server URL in APK configuration
+- Check network connectivity
+- Review server logs for errors
 
-### ⚠️ IMPORTANT NOTICE
+**File upload fails**
+- Check upload size limits
+- Verify upload directory permissions
+- Review multer configuration
 
-This software is developed **exclusively for educational and research purposes** in cybersecurity.
-
-**Legal Use Only:**
-- ✅ Cybersecurity education and training
-- ✅ Authorized penetration testing
-- ✅ Security research in controlled environments
-- ✅ Academic projects with proper oversight
-
-**Prohibited Uses:**
-- ❌ Unauthorized access to devices
-- ❌ Stalking or harassment
-- ❌ Privacy invasion
-- ❌ Data theft
-- ❌ Any illegal activities
-
-**By using this software, you agree to:**
-- Obtain explicit permission before use
-- Comply with all applicable laws
-- Accept full responsibility for your actions
-- Not hold the author liable for misuse
-
-**Unauthorized use may violate:**
-- Computer Fraud and Abuse Act (CFAA)
-- Electronic Communications Privacy Act (ECPA)
-- GDPR and privacy regulations
-- Local and international laws
+**WebSocket connection fails**
+- Check firewall settings
+- Verify Socket.IO configuration
+- Test with simple Socket.IO client
 
 ---
 
-## 🤝 Contributing
+## Technical Details
 
-Contributions are welcome for educational improvements!
+### Technologies Used
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **Socket.IO** - Real-time bidirectional communication
+- **node-telegram-bot-api** - Telegram bot integration
+- **Multer** - File upload handling
+- **UUID** - Unique identifier generation
+
+### Performance
+- Handles multiple concurrent device connections
+- Efficient WebSocket communication
+- Minimal resource usage
+- Fast response times
+
+### Compatibility
+- Node.js 14+
+- Android 5.0 (Lollipop) and higher
+- Modern web browsers for admin panel
+
+---
+
+## Contributing
+
+This is an educational project. Contributions that enhance learning value are welcome:
 
 1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+2. Create feature branch (`git checkout -b feature/improvement`)
+3. Commit changes (`git commit -am 'Add improvement'`)
+4. Push to branch (`git push origin feature/improvement`)
+5. Create Pull Request
 
 ---
 
-## 📝 License
+## License
 
-This project is licensed under the **MIT License** for educational purposes only.
+This project is licensed under the MIT License for **Educational Use Only**.
 
-**Additional Restrictions:**
-- Commercial use is prohibited
-- Must maintain attribution to ZAARA
-- Must include this disclaimer in all copies
-- Use only for lawful, authorized purposes
+See [LICENSE](LICENSE) file for full details.
 
-See [LICENSE](LICENSE) file for details.
+### License Summary
+- Free to use for educational purposes
+- Attribution required (credit to ZAARA)
+- No warranty provided
+- Author not liable for misuse
+- Must comply with local laws
 
 ---
 
-## 👨‍💻 Author
+## Legal Disclaimer
+
+**IMPORTANT:** This software is provided for **educational and research purposes ONLY**.
+
+### Terms of Use
+- This tool demonstrates security vulnerabilities for learning
+- Unauthorized access to devices is ILLEGAL
+- Users must obtain explicit permission before use
+- Creator assumes NO responsibility for misuse
+- Violation of laws may result in criminal prosecution
+
+### Ethical Guidelines
+- Only use in authorized, controlled environments
+- Respect privacy and legal boundaries
+- Use for educational advancement, not malicious intent
+- Follow responsible disclosure practices
+- Comply with all applicable laws and regulations
+
+By using this software, you agree to use it responsibly and legally.
+
+---
+
+## Author
 
 **ZAARA**
 
-- 🎓 Cybersecurity Researcher
-- 📧 Contact: [Your Email/Contact]
-- 🌐 GitHub: [@zaara](https://github.com/zaara)
+Cybersecurity Researcher & Developer
+
+### Project Information
+- **Project:** ZAARA RAT v2.0
+- **Purpose:** Cybersecurity Education
+- **Year:** 2024
+- **Repository:** https://github.com/zaaraZiof0/ZAARA-RAT-v2.0
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- Node.js Community
-- Socket.IO Team
-- Telegram Bot API
-- Cybersecurity Community
-- Open Source Contributors
-
----
-
-## 📞 Support
-
-- 📖 Documentation: See code comments
-- 🐛 Issues: [GitHub Issues](https://github.com/zaara/zaara-rat/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/zaara/zaara-rat/discussions)
+- Telegram Bot API for communication infrastructure
+- Socket.IO for real-time capabilities
+- Node.js community for excellent libraries
+- Cybersecurity research community for inspiration
 
 ---
 
-<div align="center">
+## Version History
 
-### 🛡️ ZAARA RAT v2.0
+### v2.0.0 (Current)
+- Complete rewrite with clean, documented code
+- Advanced session management
+- Enhanced security features
+- Comprehensive logging system
+- Rate limiting protection
+- Improved error handling
+- Professional documentation
+- Educational focus
 
-**Advanced Cybersecurity Education Through Ethical Research**
-
-Developed with 💙 by ZAARA
-
-📚 Knowledge • 🔐 Security • ⚖️ Ethics • 🎓 Education
+### v1.0.0
+- Initial release
+- Basic RAT functionality
+- Telegram bot integration
 
 ---
 
-**⭐ Star this repo if it helps your cybersecurity education!**
+## Support
 
-**Remember: With great power comes great responsibility. Use ethically and legally.**
+For educational purposes and legitimate research only.
+
+### Resources
+- Documentation: See project files
+- Issues: GitHub Issues page
+- Security: Report responsibly
 
 ---
 
-© 2024 ZAARA. All rights reserved. Educational use only.
+**Remember: With great power comes great responsibility. Use this tool ethically and legally.**
 
-</div>
+---
+
+*Built for cybersecurity education by ZAARA*
